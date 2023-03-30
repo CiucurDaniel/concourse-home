@@ -1,0 +1,22 @@
+# simple pipeline
+# ./fly.exe login -u test -p test -t main -c http://localhost:8080/
+# ./fly.exe -t main set-pipeline -p hello -c simple-pipeline.yaml
+jobs:
+- name: job
+  public: true
+  plan:
+  - task: simple-task
+    config:
+      platform: linux
+      image_resource:
+        type: registry-image
+        source: { repository: busybox }
+      run:
+        path: /bin/sh
+        args:
+          - -c
+          - |
+            echo INFO Preparing to write log
+            echo Hello, have a nice day
+            echo INFO Log Written
+            echo DEBUG Stopping script 
