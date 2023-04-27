@@ -27,3 +27,10 @@ docker-compose up -d
   path /var/log/fluent/concourse
 </match>
 ```
+
+## Set a demo pipeline
+
+```
+./fly.exe login -u test -p test -t main -c http://localhost:8080/
+./fly.exe -t main set-pipeline -p hello -c simple-pipeline.yaml
+```
